@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { DesktopNavigation } from "./DesktopNavigation";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(0);
-  const isDesktop = useMediaQuery({ minWidth: 768 });
 
   const roomsInfo = [
     {
@@ -53,10 +51,10 @@ function App() {
                       : activeRoom.imageMobileUrl
                   }
                   alt={activeRoom.altText}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover transition ease-in-out duration-1000 ${ activeRoom ? 'opacity-100' : 'opacity-0'}`}
                 />
 
-          < div className={`absolute top-15 flex justify-between items-center w-full pr-8 pl-8 ${ isDesktop ? 'hidden' : ''}`}>
+          < div className='absolute top-15 flex justify-between items-center w-full pr-8 pl-8 md:hidden'>
             <button
               onClick={() => {
                 setIsOpen(true);
@@ -68,7 +66,7 @@ function App() {
             <div></div>
           </div>
 
-          <div className={`absolute top-0 flex justify-between items-center pr-8 pl-8 ${ !isDesktop ? "hidden" : "" }`}>
+          <div className='absolute top-0 justify-between items-center pr-8 pl-8 hidden md:flex'>
             <img src="./images/logo.svg" alt="room tag" className="ml-10 mr-8"/>
             <nav className="flex justify-between items-center pr-6 pl-6 pt-15 pb-15 font-bold text-white w-96">
               <DesktopNavigation />
