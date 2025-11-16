@@ -109,9 +109,9 @@ function App() {
           "
           >
             <button
-              className="pr-8 p-7
+              className="pr-8 p-7 transition ease-in-out duration-300
               hover:bg-primaryGrey-800
-                active:bg-primaryGrey-800"
+                active:bg-primaryGrey-800 active:scale-110"
               onClick={() => {
                 if (count <= 0) {
                   setCount(roomsInfo.length - 1);
@@ -129,9 +129,9 @@ function App() {
               />
             </button>
             <button
-              className="pl-8 p-7
-              hover:bg-primaryGrey-800
-                active:bg-primaryGrey-800"
+              className="pl-8 p-7 transition ease-in-out duration-300
+              hover:bg-primaryGrey-800 
+                active:bg-primaryGrey-800 active:scale-110"
               onClick={() => {
                 if (count >= roomsInfo.length - 1) {
                   setCount(0);
@@ -166,10 +166,10 @@ function App() {
           </p>
 
           <button
-            className="flex items-center mr-13 ml-13 mt-12 w-full
+            className="flex items-center mr-13 ml-13 mt-12 w-full transition ease-in-out duration-300
                 md:m-0 md:mt-6
                 hover:text-primaryGrey-800
-                active:text-primaryGrey-800"
+                active:text-primaryGrey-800 active:scale-110"
           >
             <span className="font-bold text-lg tracking-[0.8rem]">
               SHOP NOW
