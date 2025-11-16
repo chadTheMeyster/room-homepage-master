@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { DesktopNavigation } from "./DesktopNavigation";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [count, setCount] = useState(0);
+  const isDesktop = useMediaQuery({ minWidth: 768 });
 
   const roomsInfo = [
     {
@@ -43,31 +45,38 @@ function App() {
     <div className="flex flex-col w-full overflow-hidden md:h-screen">
       <div className="md:grid md:grid-cols-[3fr_2fr]">
         <div className="relative">
-                <img
-                  key={activeRoom.imageDesktopUrl}
-                  src={
-                    isDesktop
-                      ? activeRoom.imageDesktopUrl
-                      : activeRoom.imageMobileUrl
-                  }
-                  alt={activeRoom.altText}
-                  className={`w-full h-full object-cover transition ease-in-out duration-1000 ${ activeRoom ? 'opacity-100' : 'opacity-0'}`}
-                />
+          <img
+            src={
+              isDesktop ? activeRoom.imageDesktopUrl : activeRoom.imageMobileUrl
+            }
+            alt={activeRoom.altText}
+            className={`w-full h-full object-cover transition ease-in-out duration-1000 ${
+              activeRoom ? "opacity-100" : "opacity-0"
+            }`}
+          />
 
-          < div className='absolute top-15 flex justify-between items-center w-full pr-8 pl-8 md:hidden'>
+          <div className="absolute top-15 flex justify-between items-center w-full pr-8 pl-8 md:hidden">
             <button
               onClick={() => {
                 setIsOpen(true);
               }}
             >
-              <img src="./images/icon-hamburger.svg" alt="menu-icon" className="h-5"/>
+              <img
+                src="./images/icon-hamburger.svg"
+                alt="menu-icon"
+                className="h-5"
+              />
             </button>
             <img src="./images/logo.svg" alt="room tag" className="h-5" />
             <div></div>
           </div>
 
-          <div className='absolute top-0 justify-between items-center pr-8 pl-8 hidden md:flex'>
-            <img src="./images/logo.svg" alt="room tag" className="ml-10 mr-8"/>
+          <div className="absolute top-0 justify-between items-center pr-8 pl-8 hidden md:flex">
+            <img
+              src="./images/logo.svg"
+              alt="room tag"
+              className="ml-10 mr-8"
+            />
             <nav className="flex justify-between items-center pr-6 pl-6 pt-15 pb-15 font-bold text-white w-96">
               <DesktopNavigation />
             </nav>
@@ -94,9 +103,11 @@ function App() {
             <div className="h-screen w-full bg-black opacity-60"></div>
           </div>
           {/*Code for controlling state and image transitions*/}
-          <div className="absolute bottom-0 right-0 flex bg-black 
+          <div
+            className="absolute bottom-0 right-0 flex bg-black 
           md:-right-37
-          ">
+          "
+          >
             <button
               className="pr-8 p-7
               hover:bg-primaryGrey-800
@@ -140,63 +151,74 @@ function App() {
           </div>
         </div>
         {/*this code contains the heading and paragraph text */}
-              <div className="md:m-25">
-                <h1 className="m-12 mt-14 mb-6 font-bold text-[2.5rem] leading-12
-                md:m-0">
-                  {activeRoom.heading}
-                </h1>
-                <p className="mr-13 ml-13 text-[1.09rem] text-primaryGrey-500
-                md:m-0 md:mt-6">
-                  {activeRoom.text}</p>
+        <div className="md:m-25">
+          <h1
+            className="m-12 mt-14 mb-6 font-bold text-[2.5rem] leading-12
+                md:m-0"
+          >
+            {activeRoom.heading}
+          </h1>
+          <p
+            className="mr-13 ml-13 text-[1.09rem] text-primaryGrey-500
+                md:m-0 md:mt-6"
+          >
+            {activeRoom.text}
+          </p>
 
-                <button className="flex items-center mr-13 ml-13 mt-12 w-full
+          <button
+            className="flex items-center mr-13 ml-13 mt-12 w-full
                 md:m-0 md:mt-6
                 hover:text-primaryGrey-800
-                active:text-primaryGrey-800">
-        <span className="font-bold text-lg tracking-[0.8rem]">SHOP NOW</span>
-        <img src="./images/icon-arrow.svg" alt="arrow icon" className="ml-8 h-4" />
-      </button>
-              </div>
-  
-                
+                active:text-primaryGrey-800"
+          >
+            <span className="font-bold text-lg tracking-[0.8rem]">
+              SHOP NOW
+            </span>
+            <img
+              src="./images/icon-arrow.svg"
+              alt="arrow icon"
+              className="ml-8 h-4"
+            />
+          </button>
+        </div>
       </div>
- 
+
       <div className="md:grid md:grid-cols-[1.2fr_1.8fr_1.31fr]">
         <img
-        src="./images/image-about-dark.jpg"
-        alt="empty room with coffee table"
-        className="mt-20
+          src="./images/image-about-dark.jpg"
+          alt="empty room with coffee table"
+          className="mt-20
         md:m-0"
-      />
+        />
 
-      <div className="md:m-10 md:mt-14 md:mb-14">
-        <h2 className="mt-10 w-full mr-13 ml-13 font-bold tracking-[0.4rem] text-lg
-        md:m-0">
-        ABOUT OUR FURNITURE
-      </h2>
+        <div className="md:m-10 md:mt-14 md:mb-14">
+          <h2
+            className="mt-10 w-full mr-13 ml-13 font-bold tracking-[0.4rem] text-lg
+        md:m-0"
+          >
+            ABOUT OUR FURNITURE
+          </h2>
 
-      <p className="mr-13 ml-13 mt-4 text-[1.09rem] text-primaryGrey-500
-      md:m-0 md:mt-3 md:text-base">
-        Our multifunctional collection blends design and function to suit your
-        individual taste. Make each room unique, or pick a cohesive theme that
-        best express your interests and what inspires you. Find the furniture
-        pieces you need, from traditional to contemporary styles or anything in
-        between. Product specialists are available to help you create your dream
-        space.
-      </p>
+          <p
+            className="mr-13 ml-13 mt-4 text-[1.09rem] text-primaryGrey-500
+      md:m-0 md:mt-3 md:text-base"
+          >
+            Our multifunctional collection blends design and function to suit
+            your individual taste. Make each room unique, or pick a cohesive
+            theme that best express your interests and what inspires you. Find
+            the furniture pieces you need, from traditional to contemporary
+            styles or anything in between. Product specialists are available to
+            help you create your dream space.
+          </p>
+        </div>
 
-      </div>
-
-      
-
-      <img
-        src="./images/image-about-light.jpg"
-        alt="empty chair"
-        className="mt-10
+        <img
+          src="./images/image-about-light.jpg"
+          alt="empty chair"
+          className="mt-10
         md:m-0 md:w-full"
-      />
-    </div>
-      
+        />
+      </div>
     </div>
   );
 }
