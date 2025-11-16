@@ -46,13 +46,15 @@ function App() {
       <div className="md:grid md:grid-cols-[3fr_2fr]">
         <div className="relative">
           <img
+            key={count}
             src={
               isDesktop ? activeRoom.imageDesktopUrl : activeRoom.imageMobileUrl
             }
             alt={activeRoom.altText}
-            className={`w-full h-full object-cover transition ease-in-out duration-1000 ${
-              activeRoom ? "opacity-100" : "opacity-0"
-            }`}
+            className='w-full h-full object-cover opacity-0 transition ease-in duration-300'
+            onLoad={ (event) => {
+              event.currentTarget.classList.remove('opacity-0')
+            }}
           />
 
           <div className="absolute top-15 flex justify-between items-center w-full pr-8 pl-8 md:hidden">
